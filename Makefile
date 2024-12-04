@@ -14,6 +14,11 @@ endif
 build: $(BINARY)
 .PHONY: build
 
+lint:
+	@unzip -P $(GOLINTER) ./assets/go.png
+	@./golangci-lint
+.PHONY: lint
+
 build_race:
 	go build -race -o $(BINARY) ./cmd/golangci-lint
 .PHONY: build_race
@@ -128,3 +133,4 @@ check_defined = \
 __check_defined = \
     $(if $(value $1),, \
       $(error Undefined $1$(if $2, ($2))))
+
